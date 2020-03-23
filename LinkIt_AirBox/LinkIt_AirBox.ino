@@ -69,16 +69,18 @@ void loop() {
   u8g2.drawStr(0,61,("Humid : " + String(Humid) + " %RH").c_str());
   u8g2.sendBuffer();
   
-  while (!mcs.connected()) {
+  if (!mcs.connected()) {
     mcs.connect();
     if (mcs.connected()) { Serial.println("MCS 已重新連線"); }
   }
-  mcs.process(100);
+  else {
+    mcs.process(100);
   
-  MCS_PM25.set(pmat25);
-  MCS_PM10.set(pmat100);
-  MCS_Temp.set(Temp);
-  MCS_Humid.set(Humid);
+    MCS_PM25.set(pmat25);
+    MCS_PM10.set(pmat100);
+    MCS_Temp.set(Temp);
+    MCS_Humid.set(Humid);
+  }
   
   delay(1000);
 }

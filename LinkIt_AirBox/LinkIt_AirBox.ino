@@ -41,6 +41,8 @@ char buf[50];
 void setup() {
   Serial.begin(9600);
   myMerial.begin(9600);
+  pinMode(2, OUTPUT);
+  digitalWrite(2, HIGH);
   u8g2.begin();
   u8g2.clearBuffer();
   u8g2.setFont(u8g2_font_ncenB08_tr);
